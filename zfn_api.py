@@ -1629,9 +1629,9 @@ if __name__ == "__main__":
     import sys
     import os
 
-    base_url = os.environ.get("base_url")  # 教务系统URL
-    sid = os.environ.get("sid")  # 学号
-    password = os.environ.get("password")  # 密码
+    base_url = os.environ.get("BASE_URL")  # 教务系统URL
+    sid = os.environ.get("SID")  # 学号
+    password = os.environ.get("PASSWORD")  # 密码
     lgn_cookies = (
         {
             # "insert_cookie": "",
@@ -1641,8 +1641,8 @@ if __name__ == "__main__":
         if False
         else None
     )  # cookies登录，调整成True使用cookies登录，反之使用密码登录
-    test_year = os.environ.get("test_year")  # 查询学年
-    test_term = os.environ.get("test_term")  # 查询学期（1-上|2-下）
+    test_year = os.environ.get("TEST_YEAR")  # 查询学年
+    test_term = os.environ.get("TEST_TERM")  # 查询学期（1-上|2-下）
 
     # 初始化
     lgn = Client(lgn_cookies if lgn_cookies is not None else {}, base_url=base_url)
