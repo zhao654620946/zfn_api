@@ -1,0 +1,27 @@
+name: run python script every 30 minutes
+
+on:
+  schedule:
+    - cron: "*/30 * * * *"   # 每30分钟
+  workflow_dispatch:        # 允许手动运行
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt || true
+
+      - name: Run main.py
+        run: |
+          python main.py
