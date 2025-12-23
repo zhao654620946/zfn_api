@@ -1629,9 +1629,9 @@ if __name__ == "__main__":
     import sys
     import os
 
-    base_url = "https://xxxx.xxx.edu.cn"  # 教务系统URL
-    sid = "123456"  # 学号
-    password = "abc654321"  # 密码
+    base_url = os.environ.get("base_url")  # 教务系统URL
+    sid = os.environ.get("sid")  # 学号
+    password = os.environ.get("password")  # 密码
     lgn_cookies = (
         {
             # "insert_cookie": "",
@@ -1641,8 +1641,8 @@ if __name__ == "__main__":
         if False
         else None
     )  # cookies登录，调整成True使用cookies登录，反之使用密码登录
-    test_year = 2022  # 查询学年
-    test_term = 2  # 查询学期（1-上|2-下）
+    test_year = os.environ.get("test_year")  # 查询学年
+    test_term = os.environ.get("test_term")  # 查询学期（1-上|2-下）
 
     # 初始化
     lgn = Client(lgn_cookies if lgn_cookies is not None else {}, base_url=base_url)
@@ -1682,7 +1682,7 @@ if __name__ == "__main__":
 
     # 下面是各个函数调用，想调用哪个，取消注释即可
     """ 获取个人信息 """
-    result = lgn.get_info()
+    # result = lgn.get_info()
 
     """ 获取成绩单PDF """
     # result = lgn.get_academia_pdf()
@@ -1701,7 +1701,7 @@ if __name__ == "__main__":
     # result = lgn.get_schedule(test_year, test_term)
 
     """ 获取成绩 """
-    # result = lgn.get_grade(test_year, test_term)
+    result = lgn.get_grade(test_year, test_term)
 
     # 输出结果
     pprint(result)
