@@ -1641,8 +1641,8 @@ if __name__ == "__main__":
         if False
         else None
     )  # cookies登录，调整成True使用cookies登录，反之使用密码登录
-    test_year = os.environ.get("TEST_YEAR")  # 查询学年
-    test_term = os.environ.get("TEST_TERM")  # 查询学期（1-上|2-下）
+    test_year = int(os.environ.get("TEST_YEAR"))  # 查询学年
+    test_term = int(os.environ.get("TEST_TERM"))  # 查询学期（1-上|2-下）
 
     # 初始化
     lgn = Client(lgn_cookies if lgn_cookies is not None else {}, base_url=base_url)
