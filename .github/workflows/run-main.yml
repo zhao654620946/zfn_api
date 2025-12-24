@@ -1,4 +1,4 @@
-name: run python script every 30 minutes
+name: run python script
 
 on:
   schedule:
