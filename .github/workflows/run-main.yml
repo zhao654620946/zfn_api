@@ -33,3 +33,11 @@ jobs:
           PUSH_URL: ${{ secrets.PUSH_URL }}
         run: |
           python scheduler.py
+          
+      - name: Commit data.txt
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add data.txt
+          git commit -m "update data.txt" || echo "no changes"
+          git push
