@@ -73,7 +73,6 @@ def main():
     try:
         with open("data.txt", "rb") as f:
             encrypted = f.read()
-        f.close()
         last_result = cipher.decrypt(encrypted).decode()
 
     except FileNotFoundError:
@@ -87,7 +86,7 @@ def main():
     if current_result is not None:  # 确保运行结果有效
         if last_result is None:
             print("首次运行，结果为：")
-            print(extract_and_format_info(current_result))
+            # print(extract_and_format_info(current_result))
             payload = {
                 "title": "首次查询",  # 消息标题
                 "content": extract_and_format_info(current_result),  # 消息内容
@@ -95,7 +94,7 @@ def main():
             send_push_notification(PUSH_URL, payload)
         elif current_result != last_result:
             print("运行结果发生变化，新的结果为：")
-            print(extract_and_format_info(current_result))
+            # print(extract_and_format_info(current_result))
             payload = {
                 "title": "成绩更新",  # 消息标题
                 "content": extract_and_format_info(current_result),  # 消息内容
@@ -103,13 +102,12 @@ def main():
             send_push_notification(PUSH_URL, payload)
         else:
             print("运行结果相同，无变化。结果为：")
-            print(extract_and_format_info(current_result))
+            # print(extract_and_format_info(current_result))
 
         # 更新上一次的运行结果
         encrypted_data = cipher.encrypt(current_result.encode())
         with open("data.txt", "wb") as f:
             f.write(encrypted_data)
-        f.close()
 
 
 if __name__ == "__main__":
