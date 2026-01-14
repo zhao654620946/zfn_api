@@ -2,7 +2,7 @@ name: run python script
 
 on:
   schedule:
-    - cron: "*/30 * * * *"   # 每30分钟
+    - cron: "*/6 * * * *" 
   workflow_dispatch:        # 允许手动运行
 
 jobs:
